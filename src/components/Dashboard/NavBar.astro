@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+const navLinks = [
+  { href: "/", icon: "home" },
+  { href: "/", icon: "wallet" },
+  { href: "/", icon: "study" },
+  { href: "/", icon: "links" },
+  { href: "/", icon: "ia" },
+];
+---
+
+<nav class="bg-black border-r border-neutral-800 w-[4.8rem] transition-all">
+
+    <div class="mb-5 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-neutral-800 mx-auto mt-5">
+        <svg class="absolute w-12 h-12 text-neutral-20000 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+    </div>
+  <ul>
+    {
+      navLinks.map(({ href, icon }) => (
+        <li class="text-white">
+          <a href={href} class="flex gap-4">
+            <Icon name={icon} class="text-white mx-auto my-5" id="icon" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <button
+    class="flex items-center justify-center text-center w-full py-4"
+    id="logout"
+  >
+    <Icon name="logout" class="text-white" />
+  </button>
+</nav>
