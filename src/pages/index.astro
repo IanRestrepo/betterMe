@@ -1,15 +1,9 @@
 ---
 import BentoGrid from "@components/Dashboard/BentoGrid.astro";
 import Layout from "@layouts/Layout.astro";
-const Pathname = Astro.originPathname;
 ---
 
 <Layout>
-	<section class="bg-black border-b border-neutral-800 p-5">
-		<h1 class="font-mono">
-			{Pathname === "/" ? "BetterMe | Home" : Pathname}
-		</h1>
-	</section>
 
 	<div class="flex flex-col items-center justify-center h-full">
 		<span class="text-center mb-5">
@@ -19,7 +13,4 @@ const Pathname = Astro.originPathname;
 		<BentoGrid />
 	</div>
 
-	{
-		//finanzas, proyectos, accesos, links de interes, IA
-	}
 </Layout>
