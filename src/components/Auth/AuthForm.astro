@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import Label from "./Label.astro";
+import Input from "./Input.astro";
+import Button from "@components/Utils/Button.astro";
+import Separation from "@components/Utils/Separation.astro";
+
+interface Props {
+    action?: string;
+}
+
+const { action = "/api" } = Astro.props;
+---
+
+<div class="max-w-md px-10">
+    <form action={action} class="flex flex-col gap-6">
+        <div class="flex flex-col items-center gap-2 text-center">
+            <h1 class="text-2xl font-bold">Login to your account</h1>
+            <p class="text-sm text-neutral-600 font-medium">
+                Enter your email below to login to your account
+            </p>
+        </div>
+        <Label htmlFor="username" labelText="Username">
+            <Input
+                inputType="text"
+                inputName="username"
+                inputId="username"
+                placeHolder="username"
+            />
+        </Label>
+        <Label htmlFor="passwd" labelText="Password" isPasswordInput>
+            <Input
+                inputType="password"
+                inputName="password"
+                inputId="password"
+            />
+        </Label>
+        <Button>Login</Button>
+        <Separation Label="Or continue with"/>
+        <Button variant="no_bg">
+            <Icon name="github" class="mr-2"/>
+            Login with GitHub
+        </Button>
+        <div class="text-center text-sm">
+            Don&apos;t have an account?{" "}
+            <a href="#" class="underline underline-offset-4">
+              Sign up
+            </a>
+          </div>
+    </form>
+    
+</div>

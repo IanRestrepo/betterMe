@@ -1,0 +1,19 @@
+---
+interface Props {
+    inputType: "text" | "password" | "email" | "number" | "tel" | "submit";
+    inputName: string;
+    inputId: string;
+    placeHolder?: string;
+}
+
+const { inputType, inputName, inputId, placeHolder } = Astro.props;
+---
+
+<input
+    type={ inputType }
+    name={ inputName }
+    id={ inputId } 
+    placeholder={ placeHolder }
+    autocomplete="off"
+    class="outline-none rounded-md px-4 py-2 bg-neutral-900 border border-neutral-700"
+/>

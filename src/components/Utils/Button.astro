@@ -1,0 +1,24 @@
+---
+const variants = {
+    white: "rounded-md px-4 py-2 bg-white text-black flex content-center items-center justify-center font-semibold",
+    no_bg: "rounded-md px-4 py-2 border border-neutral-700 text-white flex content-center items-center justify-center font-semibold",
+};
+
+interface Props {
+    variant?: "white" | "no_bg";
+}
+
+const { variant = "white" } = Astro.props;
+---
+
+{
+    variant == "white" ? (
+        <button class={variants[variant]}>
+            <slot />
+        </button>
+    ) : (
+        <button class={variants[variant]}>
+            <slot />
+        </button>
+    )
+}
