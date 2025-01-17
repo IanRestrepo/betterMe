@@ -16,12 +16,15 @@ const Pathname = Astro.originPathname;
     <main class="min-h-screen w-full bg-neutral-900 flex overflow-x-hidden relative selection:bg-lime-700 selection:text-lime-300 text-white">
         <NavBar />
         <div class="flex-1 flex flex-col relative">
+          
           <section class="bg-black border-b border-neutral-800 p-5">
             <h1 class="font-mono capitalize">
               {Pathname === "/" ? "BetterMe | Home" : 'BetterMe | ' + Pathname.replace('/', '')}
             </h1>
           </section>
+
             <slot />
+
         </div>
     </main>
   </body>

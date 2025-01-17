@@ -1,7 +1,60 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "@layouts/Layout.astro";
+import Card from "@components/Dashboard/Card/Card.astro";
+
+let focusOn: string = 'Develop an app';
 ---
 
 <Layout>
+    <section class="p-5">
+        <Card>
 
+            <div>
+                <div class="border-4 border-neutral-800 rounded-full">
+                    <h1>Time goes here lol</h1>
+                </div>
+                <div class="flex justify-between p-2">
+                    <Icon name='home'/>
+                    <Icon name='home'/>
+                </div>
+            </div>
+            
+        </Card>
+    </section>
 </Layout>
+
+
+<script>
+    // Add timer functionality here
+    let isRunning = false;
+    let timeLeft = 25 * 60; // 25 minutes in seconds
+
+    const startButton = document.querySelector('#startbutton');
+    const timeDisplay = document.querySelector('.text-5xl');
+
+    startButton?.addEventListener('click', () => {
+      isRunning = !isRunning;
+      startButton.textContent = isRunning ? 'PAUSE' : 'START';
+      
+      if (isRunning) {
+        const timer = setInterval(() => {
+          if (!isRunning) {
+            clearInterval(timer);
+            return;
+          }
+
+          timeLeft--;
+          const minutes = Math.floor(timeLeft / 60);
+          const seconds = timeLeft % 60;
+          timeDisplay!.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+          if (timeLeft === 0) {
+            clearInterval(timer);
+            isRunning = false;
+            startButton.textContent = 'START';
+          }
+        }, 1000);
+      }
+    });
+  </script>
