@@ -1,0 +1,62 @@
+---
+interface Props {
+    isOpen?: boolean;
+    triggerId: string;
+}
+
+const { isOpen = false, triggerId } = Astro.props;
+---
+
+<div id="sheetOverlay" class={`
+    fixed inset-0 z-50 w-screen h-screen bg-neutral-950/60
+    transition-all duration-500 ease-in-out
+    ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
+`}>
+    <aside id="sheetPanel" class={`
+        border-l border-neutral-800 h-screen w-1/6 ml-auto bg-black
+        transition-all duration-500 ease-in-out p-5
+        ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+    `}>
+      <slot />
+    </aside>
+</div>
+
+<script define:vars={{triggerId}}>
+    function toggleSheet(open) {
+        const overlay = document.getElementById('sheetOverlay');
+        const panel = document.getElementById('sheetPanel');
+        
+        if (overlay && panel) {
+            if (open) {
+                overlay.classList.remove('opacity-0', 'invisible');
+                overlay.classList.add('opacity-100', 'visible');
+                panel.classList.remove('translate-x-full');
+                panel.classList.add('translate-x-0');
+            } else {
+                panel.classList.remove('translate-x-0');
+                panel.classList.add('translate-x-full');
+                
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-100', 'visible');
+                    overlay.classList.add('opacity-0', 'invisible');
+                }, 300);
+            }
+        }
+    }
+
+    // Agregar el event listener al botón trigger
+    const triggerButton = document.getElementById(triggerId);
+    if (triggerButton) {
+        triggerButton.addEventListener('click', () => toggleSheet(true));
+    }
+
+    // Opcional: cerrar al hacer click en el overlay
+    const overlay = document.getElementById('sheetOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                toggleSheet(false);
+            }
+        });
+    }
+</script>

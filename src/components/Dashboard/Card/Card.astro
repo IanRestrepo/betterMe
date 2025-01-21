@@ -1,8 +1,13 @@
 ---
+// File: src/components/Card.astro
+interface Props {
+    class?: string;
+}
 
+const { class: className = '' } = Astro.props;
 ---
 
-<div class="bg-neutral-950 p-2 max-w-96 rounded-lg border border-neutral-800">
+<div class={`bg-neutral-900 p-2 min-w-60 max-w-xs rounded-lg ${className}`}>
     <slot>
         <p>There's no content here!</p>
     </slot>

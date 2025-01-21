@@ -1,6 +1,7 @@
 ---
 import NavBar from "@components/Dashboard/NavBar.astro";
 const Pathname = Astro.originPathname;
+
 ---
 
 <!doctype html>
@@ -9,7 +10,7 @@ const Pathname = Astro.originPathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="generator" content={ Astro.generator } />
     <title></title>
   </head>
   <body class="bg-neutral-950">
@@ -19,7 +20,11 @@ const Pathname = Astro.originPathname;
           
           <section class="bg-black border-b border-neutral-800 p-5">
             <h1 class="font-mono capitalize">
-              {Pathname === "/" ? "BetterMe | Home" : 'BetterMe | ' + Pathname.replace('/', '')}
+              {
+                Pathname === "/dashboard" 
+                  ? "BetterMe | Dashboard" 
+                  : `BetterMe | ${Pathname.replace(/(dashboard|\/)/g, '')}`
+              }
             </h1>
           </section>
 

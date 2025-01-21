@@ -1,0 +1,104 @@
+---
+import { Icon } from "astro-icon/components";
+import Card from "@/components/Dashboard/Card/Card.astro";
+import Sheet from "./Sheet/Sheet.astro";
+
+interface Props {
+    minutes?: number;
+    seconds?: number;
+    minutesId: string;
+    secondsId: string;
+}
+
+const { minutes = 25, seconds = 0, minutesId, secondsId } = Astro.props;
+const formattedSeconds = seconds.toString().padStart(2, "0");
+const triggerId = "settings-trigger";
+---
+
+<Card class="w-[280px]">
+    <div class="bg-black p-6 rounded-3xl border border-neutral-800 w-[280px]">
+        <div class="flex flex-col items-center justify-center mb-6">
+            <div
+                class="relative w-32 h-32 flex items-center justify-center flex-col"
+            >
+                <div
+                    class="absolute inset-0 rounded-full border-4 border-neutral-800"
+                >
+                </div>
+                <span class="text-4xl font-bold text-white">
+                    <span id={minutesId}>{minutes}</span>:<span id={secondsId}
+                        >{formattedSeconds}</span
+                    ></span
+                >
+                <span class="my-1 flex gap-1">
+                    <span
+                        class="w-2 h-2 bg-violet-500 border-neutral-800 rounded-sm"
+                    ></span>
+                    <span
+                        class="w-2 h-2 bg-violet-500 border-neutral-800 rounded-sm"
+                    ></span>
+                    <span
+                        class="w-2 h-2 bg-violet-300 border-neutral-800 rounded-sm"
+                    ></span>
+                    <span
+                        class="w-2 h-2 bg-violet-300 border-neutral-800 rounded-sm"
+                    ></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="flex justify-center gap-4">
+            <button
+                class="px-6 py-2 rounded-full bg-neutral-800 text-white text-sm hover:bg-neutral-700 transition-colors"
+            >
+                START
+            </button>
+            <button
+                id={triggerId}
+                class="p-2 rounded-full bg-neutral-800 text-white hover:bg-neutral-700 transition-colors"
+            >
+                <Icon name="settings" />
+            </button>
+        </div>
+    </div>
+</Card>
+<Sheet triggerId={triggerId}>
+    <h1 class="text-center font-semibold">Settings</h1>
+    <div class="mt-5">
+        <div class="flex justify-between px-2 py-1 font-light">
+            Focus Session
+            <span class="font-bold"
+                >{minutes}
+                <span class="font-thin text-neutral-400 text-sm">min</span
+                ></span
+            >
+        </div>
+
+        <div class="flex justify-between px-2 py-1 font-light">
+            Short break
+            <span class="font-bold"
+                >{minutes}
+                <span class="font-thin text-neutral-400 text-sm">min</span
+                ></span
+            >
+        </div>
+
+        <div class="flex justify-between px-2 py-1 font-light">
+            Long break
+            <span class="font-bold"
+                >{minutes}
+                <span class="font-thin text-neutral-400 text-sm">min</span
+                ></span
+            >
+        </div>
+
+        <div class="flex justify-between px-2 py-1 font-light">
+            Long break after
+            <span class="font-bold"
+                >{minutes}
+                <span class="font-thin text-neutral-400 text-sm">min</span
+                ></span
+            >
+        </div>
+    </div>
+</Sheet>

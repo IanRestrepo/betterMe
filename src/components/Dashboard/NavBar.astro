@@ -1,12 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
 const navLinks = [
-  { href: "/", icon: "home" },
-  { href: "/finances", icon: "wallet" },
-  { href: "/projects", icon: "study" },
-  { href: "/links", icon: "links" },
-  { href: "/access", icon: "password" },
-  { href: "/ai", icon: "ia" },
+  { href: "/dashboard", icon: "home" },
+  { href: "/dashboard/finances", icon: "wallet" },
+  { href: "/dashboard/projects", icon: "study" },
+  { href: "/dashboard/links", icon: "links" },
+  { href: "/dashboard/access", icon: "password" },
+  { href: "/dashboard/ai", icon: "ia" },
 ];
 ---
 
@@ -33,3 +33,9 @@ const navLinks = [
     <Icon name="logout" class="text-white" />
   </button>
 </nav>
+
+<script>
+  document.getElementById('logout')?.addEventListener('click', () => {
+    window.location.href = '/';
+  });
+</script>
